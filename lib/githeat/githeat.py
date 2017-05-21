@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from __future__ import print_function
+
 
 import datetime
 import itertools
@@ -157,7 +157,7 @@ class Githeat:
         """
         Updates colors to next color in `COLORS` list
         """
-        self.colors = self.colors_iterator.next()
+        self.colors = next(self.colors_iterator)
         return self.colors
 
     def parse_commits(self):
@@ -442,7 +442,7 @@ class Githeat:
         n = self.stat_number if self.stat_number else 5
 
         top_n = self.get_top_n_commiters(
-                list(itertools.chain.from_iterable(self.commits_db.values())),
+                list(itertools.chain.from_iterable(list(self.commits_db.values()))),
                 n
         )
 

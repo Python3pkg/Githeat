@@ -2,8 +2,8 @@
 """ Implementation of interactive githeat.
 
 """
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from argparse import ArgumentParser
 from argparse import ArgumentTypeError
 from argparse import RawDescriptionHelpFormatter
@@ -135,7 +135,7 @@ try:
     # pylint: disable=invalid-name
     #         Invalid constant name "echo"
     echo = functools.partial(print, end='', flush=True)
-    echo(u'')
+    echo('')
 except TypeError:
     # TypeError: 'flush' is an invalid keyword argument for this function
     import sys
@@ -143,7 +143,7 @@ except TypeError:
 
     def echo(text):
         """Display ``text`` and flush output."""
-        sys.stdout.write(u'{}'.format(text))
+        sys.stdout.write('{}'.format(text))
         sys.stdout.flush()
 
 
@@ -387,9 +387,9 @@ def open_commits_terminal(new_cursor_date_value, commits_on_date, githeat):
 
         # Print header
         print_header_left(term, str(new_cursor_date_value), screen)
-        text = u'GitHeat {}'.format(__version__)
+        text = 'GitHeat {}'.format(__version__)
         print_header_center(term, text, screen)
-        text = u'ESC, to return'
+        text = 'ESC, to return'
         print_header_right(term, text, screen)
         #  hold the commit info that we will display depending on scrolling window edges
         commit_values_holder = []
@@ -484,7 +484,7 @@ def update_most_committers_footer(location, githeat, date, term, screen):
         names = top_authors_to_string(top_n, colors=githeat.colors)
         msg = "{} {}".format(term.bold_white("Most committers:"), names)
 
-    footer = " ".join([term.bold_white(unicode(date)), msg])
+    footer = " ".join([term.bold_white(str(date)), msg])
     value = term.ljust(footer)
     print_footer_left(term, value, screen)
 
@@ -532,14 +532,14 @@ def main(argv=None):
          term.keypad():
 
         # Print header
-        print_header_left(term, unicode(os.getcwd()), screen)
-        text = u'GitHeat {}'.format(__version__)
+        print_header_left(term, str(os.getcwd()), screen)
+        text = 'GitHeat {}'.format(__version__)
         print_header_center(term, text, screen)
-        text = u'ESC, ^c to exit'
+        text = 'ESC, ^c to exit'
         print_header_right(term, text, screen)
 
         # Print footer
-        text = u'Please move cursor to navigate through map'
+        text = 'Please move cursor to navigate through map'
         print_footer_left(term, term.bold(text), screen)
 
         graph_right_most_x = term.width  # initialized at terminal width
@@ -679,7 +679,7 @@ def main(argv=None):
 
             if n_csr != csr:
                 # erase old cursor,
-                prev_value = screen.get((csr.y, csr.x), u'  ')
+                prev_value = screen.get((csr.y, csr.x), '  ')
                 echo_yx(csr, prev_value)
                 csr = n_csr
 
@@ -695,8 +695,8 @@ def main(argv=None):
                     # redraw base terminal after exiting commits desc terminal
                     redraw(term=term, screen=screen)
                 else:
-                    info = u'Please choose a date with contributions \a'
-                    text = unicode(new_cursor_date_value) + ' ' + info
+                    info = 'Please choose a date with contributions \a'
+                    text = str(new_cursor_date_value) + ' ' + info
                     print_footer_left(term, text, screen)
 
     logger.debug("successful completion")

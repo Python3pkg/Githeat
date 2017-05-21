@@ -3,8 +3,8 @@
     python -m githeat  ...
 
 """
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 
 from argparse import ArgumentParser
 from argparse import ArgumentTypeError

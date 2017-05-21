@@ -1,7 +1,7 @@
 """ Helper methods
 
 """
-from __future__ import absolute_import
+
 
 import calendar
 import math

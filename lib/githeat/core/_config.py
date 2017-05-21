@@ -4,7 +4,7 @@ This module defines a global configuration object. Other modules should use
 this object to store application-wide configuration values.
 
 """
-from __future__ import absolute_import
+
 
 from re import compile
 from yaml import load
@@ -64,7 +64,7 @@ class _Config(_AttrDict):
 
         self.clear()
         params = {r"%{:s};".format(key): val for (key, val) in
-                  params.iteritems()} if params else {}
+                  params.items()} if params else {}
         regex = compile("|".join(params) or r"^(?!)")
         for path in paths:
             try:
